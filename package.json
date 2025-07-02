@@ -1,0 +1,34 @@
+{
+  "name": "guitar-tuner-pro",
+  "version": "1.0.0",
+  "description": "Professional guitar tuner web application with real-time pitch detection",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx http-server . -p 8080 -o",
+    "dev": "npx http-server . -p 8080 -o -c-1",
+    "build": "echo 'No build step needed for this client-side app'",
+    "deploy": "gh-pages -d ."
+  },
+  "keywords": [
+    "guitar",
+    "tuner",
+    "music",
+    "audio",
+    "web-audio-api",
+    "pitch-detection"
+  ],
+  "author": "Guitar Tuner Pro",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "gh-pages": "^6.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/guitar-tuner-pro.git"
+  },
+  "homepage": "https://yourusername.github.io/guitar-tuner-pro",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

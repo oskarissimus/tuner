@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guitar Tuner Pro</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <h1 class="app-title">🎸 Guitar Tuner Pro</h1>
+            <p class="subtitle">Professional guitar tuning made simple</p>
+        </header>
+
+        <main class="main-content">
+            <div class="tuner-display">
+                <div class="current-note">
+                    <div class="note-circle">
+                        <span class="note-text" id="noteText">-</span>
+                        <span class="octave" id="octave"></span>
+                    </div>
+                    <div class="frequency" id="frequency">0 Hz</div>
+                </div>
+
+                <div class="tuning-meter">
+                    <div class="meter-container">
+                        <div class="meter-marks">
+                            <div class="mark flat-zone"></div>
+                            <div class="mark flat-zone"></div>
+                            <div class="mark center-zone"></div>
+                            <div class="mark sharp-zone"></div>
+                            <div class="mark sharp-zone"></div>
+                        </div>
+                        <div class="meter-needle" id="needle"></div>
+                        <div class="meter-labels">
+                            <span class="flat-label">♭</span>
+                            <span class="in-tune-label">♪</span>
+                            <span class="sharp-label">♯</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tuning-status" id="tuningStatus">
+                    <div class="status-indicator" id="statusIndicator"></div>
+                    <span class="status-text" id="statusText">Play a string to start tuning</span>
+                </div>
+            </div>
+
+            <div class="strings-reference">
+                <h3>Standard Tuning</h3>
+                <div class="strings-container">
+                    <div class="string-item" data-note="E" data-freq="82.41">
+                        <div class="string-number">6</div>
+                        <div class="string-note">E</div>
+                        <div class="string-freq">82.4 Hz</div>
+                    </div>
+                    <div class="string-item" data-note="A" data-freq="110.00">
+                        <div class="string-number">5</div>
+                        <div class="string-note">A</div>
+                        <div class="string-freq">110.0 Hz</div>
+                    </div>
+                    <div class="string-item" data-note="D" data-freq="146.83">
+                        <div class="string-number">4</div>
+                        <div class="string-note">D</div>
+                        <div class="string-freq">146.8 Hz</div>
+                    </div>
+                    <div class="string-item" data-note="G" data-freq="196.00">
+                        <div class="string-number">3</div>
+                        <div class="string-note">G</div>
+                        <div class="string-freq">196.0 Hz</div>
+                    </div>
+                    <div class="string-item" data-note="B" data-freq="246.94">
+                        <div class="string-number">2</div>
+                        <div class="string-note">B</div>
+                        <div class="string-freq">246.9 Hz</div>
+                    </div>
+                    <div class="string-item" data-note="E" data-freq="329.63">
+                        <div class="string-number">1</div>
+                        <div class="string-note">E</div>
+                        <div class="string-freq">329.6 Hz</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="startButton" class="primary-button">
+                    <span class="button-icon">🎤</span>
+                    Start Tuning
+                </button>
+                <button id="stopButton" class="secondary-button" disabled>
+                    <span class="button-icon">⏹️</span>
+                    Stop
+                </button>
+            </div>
+
+            <div class="instructions">
+                <h4>How to Use:</h4>
+                <ol>
+                    <li>Click "Start Tuning" to activate the microphone</li>
+                    <li>Play a guitar string</li>
+                    <li>Watch the needle and tune until it's centered</li>
+                    <li>Green = In Tune, Red = Out of Tune</li>
+                </ol>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 Guitar Tuner Pro - Made with ❤️ for musicians</p>
+        </footer>
+    </div>
+
+    <script src="tuner.js"></script>
+</body>
+</html>
