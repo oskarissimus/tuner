@@ -1,0 +1,24 @@
+{
+  "name": "pro-guitar-tuner",
+  "version": "1.0.0",
+  "description": "A vintage-styled web-based guitar tuner application",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Static site - no build required'",
+    "start": "npx serve ."
+  },
+  "keywords": [
+    "guitar",
+    "tuner",
+    "music",
+    "web-app",
+    "vintage",
+    "instrument"
+  ],
+  "author": "Guitar Tuner App",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14"
+  }
+}
