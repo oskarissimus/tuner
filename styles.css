@@ -1,0 +1,474 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background: linear-gradient(180deg, #8B1A1A 0%, #2D0A0A 100%);
+    color: #D4AF37;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.app-container {
+    max-width: 400px;
+    margin: 0 auto;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* Tuner Section */
+.tuner-section {
+    padding: 20px;
+    position: relative;
+}
+
+.tuner-gauge {
+    width: 320px;
+    height: 320px;
+    margin: 0 auto;
+    position: relative;
+    background: radial-gradient(circle, #F4E4BC 0%, #D4AF37 30%, #8B4513 100%);
+    border-radius: 50%;
+    border: 8px solid #4A1810;
+    box-shadow: 
+        inset 0 0 20px rgba(0,0,0,0.3),
+        0 8px 16px rgba(0,0,0,0.4);
+}
+
+.gauge-numbers {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.gauge-num {
+    position: absolute;
+    font-size: 14px;
+    font-weight: bold;
+    color: #2D0A0A;
+    transform-origin: center;
+}
+
+.gauge-num.left-40 { top: 25%; left: 8%; transform: rotate(-45deg); }
+.gauge-num.left-30 { top: 15%; left: 20%; transform: rotate(-30deg); }
+.gauge-num.left-20 { top: 8%; left: 35%; transform: rotate(-15deg); }
+.gauge-num.left-10 { top: 5%; left: 45%; }
+.gauge-num.center { top: 3%; left: 50%; transform: translateX(-50%); }
+.gauge-num.right-10 { top: 5%; right: 45%; }
+.gauge-num.right-20 { top: 8%; right: 35%; transform: rotate(15deg); }
+.gauge-num.right-30 { top: 15%; right: 20%; transform: rotate(30deg); }
+.gauge-num.right-40 { top: 25%; right: 8%; transform: rotate(45deg); }
+
+.gauge-ticks {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.gauge-ticks::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: 
+        conic-gradient(
+            from 0deg,
+            transparent 0deg,
+            #2D0A0A 2deg,
+            transparent 4deg,
+            transparent 18deg,
+            #2D0A0A 20deg,
+            transparent 22deg,
+            transparent 36deg,
+            #2D0A0A 38deg,
+            transparent 40deg,
+            transparent 54deg,
+            #2D0A0A 56deg,
+            transparent 58deg,
+            transparent 122deg,
+            #2D0A0A 124deg,
+            transparent 126deg,
+            transparent 140deg,
+            #2D0A0A 142deg,
+            transparent 144deg,
+            transparent 158deg,
+            #2D0A0A 160deg,
+            transparent 162deg,
+            transparent 176deg,
+            #2D0A0A 178deg,
+            transparent 180deg
+        );
+    border-radius: 50%;
+    mask: radial-gradient(circle, transparent 85%, black 85%, black 95%, transparent 95%);
+}
+
+.gauge-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 2;
+}
+
+.brand-text {
+    margin-bottom: 15px;
+}
+
+.pro-text, .guitar-text, .tuner-text {
+    display: block;
+    font-style: italic;
+    color: #2D0A0A;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
+}
+
+.pro-text {
+    font-size: 16px;
+    transform: rotate(-25deg);
+    margin-bottom: -5px;
+}
+
+.guitar-text {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: -5px;
+}
+
+.tuner-text {
+    font-size: 16px;
+    transform: rotate(25deg);
+}
+
+.digital-display {
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, #FF0000 0%, #8B0000 70%, #2D0A0A 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px auto;
+    border: 4px solid #4A1810;
+    box-shadow: 
+        inset 0 0 15px rgba(0,0,0,0.5),
+        0 4px 8px rgba(0,0,0,0.3);
+}
+
+#current-note {
+    font-size: 36px;
+    font-weight: bold;
+    color: #000;
+    text-shadow: 0 0 10px rgba(255,0,0,0.8);
+}
+
+.needle {
+    position: absolute;
+    width: 2px;
+    height: 60px;
+    background: #2D0A0A;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%) rotate(5deg);
+    transform-origin: bottom center;
+    border-radius: 2px;
+    z-index: 3;
+    box-shadow: 0 0 3px rgba(0,0,0,0.5);
+}
+
+.needle::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    background: #2D0A0A;
+    border-radius: 50%;
+}
+
+.cent-label {
+    position: absolute;
+    bottom: 30px;
+    left: 20px;
+    font-size: 12px;
+    color: #2D0A0A;
+    font-style: italic;
+}
+
+/* Note Wheel Section */
+.note-wheel-section {
+    margin-top: 30px;
+    position: relative;
+}
+
+.note-wheel-label {
+    font-size: 16px;
+    color: #D4AF37;
+    font-style: italic;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.note-wheel {
+    background: linear-gradient(90deg, #8B4513 0%, #D4AF37 50%, #8B4513 100%);
+    height: 60px;
+    border-radius: 30px;
+    position: relative;
+    border: 3px solid #4A1810;
+    box-shadow: 
+        inset 0 3px 6px rgba(0,0,0,0.3),
+        0 4px 8px rgba(0,0,0,0.2);
+}
+
+.note-selector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 40px;
+}
+
+.note-item {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2D0A0A;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.note-item.active {
+    background: rgba(45, 10, 10, 0.2);
+    color: #000;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.note-wheel-handle {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    background: #2D0A0A;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.settings-icon {
+    position: absolute;
+    top: 50%;
+    right: -50px;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: #D4AF37;
+    background: #4A1810;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Fretboard Section */
+.fretboard-section {
+    background: #1A0A06;
+    padding: 20px;
+    margin-top: 20px;
+    position: relative;
+}
+
+.fretboard-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: repeating-linear-gradient(
+        90deg,
+        #2D1B0E 0px,
+        #2D1B0E 2px,
+        #1A0A06 2px,
+        #1A0A06 6px
+    );
+}
+
+.tuning-label {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.standard-text {
+    font-size: 12px;
+    color: #D4AF37;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    position: absolute;
+    left: 10px;
+    top: 60px;
+}
+
+.tuning-text {
+    font-size: 12px;
+    color: #D4AF37;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    position: absolute;
+    left: 25px;
+    top: 60px;
+}
+
+.guitar-strings {
+    padding-left: 60px;
+}
+
+.string-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.string-label {
+    width: 30px;
+    font-size: 14px;
+    color: #D4AF37;
+    background: #4A1810;
+    text-align: center;
+    padding: 4px;
+    border-radius: 15px;
+    margin-right: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.string-line {
+    flex: 1;
+    height: 2px;
+    background: #C0C0C0;
+    position: relative;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.string-line.high-e { height: 1px; }
+.string-line.b { height: 1.5px; }
+.string-line.g { height: 2px; }
+.string-line.d { height: 2.5px; }
+.string-line.a { height: 3px; }
+.string-line.low-e { height: 3.5px; }
+
+.string-line.active {
+    background: #FF0000;
+    box-shadow: 0 0 8px rgba(255,0,0,0.6);
+}
+
+.fret-markers {
+    display: flex;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    gap: 80px;
+}
+
+.fret-marker {
+    width: 2px;
+    height: 40px;
+    background: #8B4513;
+    box-shadow: 1px 0 2px rgba(0,0,0,0.3);
+}
+
+.fret-marker.active-fret {
+    background: #D4AF37;
+    box-shadow: 0 0 6px rgba(212, 175, 55, 0.6);
+}
+
+.active-fret::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background: rgba(255,255,255,0.8);
+    border-radius: 50%;
+    box-shadow: 0 0 4px rgba(255,255,255,0.6);
+}
+
+/* Bottom Navigation */
+.bottom-navigation {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 400px;
+    background: linear-gradient(180deg, #4A1810 0%, #2D0A0A 100%);
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 0 25px 0;
+    border-top: 1px solid #8B4513;
+    box-shadow: 0 -4px 12px rgba(0,0,0,0.4);
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-item.active {
+    color: #00FF88;
+}
+
+.nav-item:hover {
+    transform: translateY(-2px);
+}
+
+.nav-icon {
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+}
+
+.nav-label {
+    font-size: 12px;
+    color: inherit;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .app-container {
+        max-width: 100%;
+    }
+    
+    .tuner-gauge {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .settings-icon {
+        right: -30px;
+    }
+    
+    .fret-markers {
+        gap: 60px;
+    }
+}
